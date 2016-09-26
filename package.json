@@ -1,0 +1,25 @@
+{
+  "name": "linq-ui",
+  "version": "1.0.0",
+  "description": "msc project ui",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcinobiedz/LINQ-UI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcinobiedz/LINQ-UI/issues"
+  },
+  "homepage": "https://github.com/marcinobiedz/LINQ-UI#readme",
+  "devDependencies": {
+    "gulp": "3.9.1",
+    "typescript": "2.0.3",
+    "webpack": "1.13.2"
+  },
+  "dependencies": {
+    "d3": "4.2.6"
+  }
+}
