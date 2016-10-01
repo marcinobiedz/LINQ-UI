@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "msc project ui",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "compile": "tsc",
+    "dev": "webpack -w",
+    "bundle": "webpack --optimize-minimize"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marcinobiedz/LINQ-UI.git"
@@ -16,10 +20,9 @@
   "homepage": "https://github.com/marcinobiedz/LINQ-UI#readme",
   "devDependencies": {
     "gulp": "3.9.1",
+    "ts-loader": "0.8.2",
     "typescript": "2.0.3",
     "webpack": "1.13.2"
   },
-  "dependencies": {
-    "d3": "4.2.6"
-  }
+  "dependencies": {}
 }
