@@ -19,10 +19,8 @@
   },
   "homepage": "https://github.com/marcinobiedz/LINQ-UI#readme",
   "devDependencies": {
-    "gulp": "3.9.1",
     "ts-loader": "0.8.2",
     "typescript": "2.0.3",
     "webpack": "1.13.2"
-  },
-  "dependencies": {}
+  }
 }
