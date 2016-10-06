@@ -6,12 +6,11 @@ module.exports = {
     exclude: 'node_modules',
     output: {
         path: 'dist',
-        filename: '[name].bundle.js'
+        filename: '[name].js'
     },
     devtool: 'source-map',
     resolve: {
-        // extensions: ['', '.ts', '.js']
-        extensions: ['', '.ts']
+        extensions: ['', '.ts', '.js']
     },
     module: {
         loaders: [

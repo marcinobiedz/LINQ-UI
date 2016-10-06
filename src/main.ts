@@ -1,4 +1,4 @@
-import * as d3 from 'd3';
+//import * as d3 from 'd3';
 
 let xhr: XMLHttpRequest = new XMLHttpRequest();
 let method: string = "POST";
@@ -17,6 +17,4 @@ let a = 'john rambo';
 
 xhr.send(JSON.stringify(a));
 
-d3.layout
-.tree()
-.size();
+d3.layout.tree().size();
