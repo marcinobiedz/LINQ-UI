@@ -1,15 +1,21 @@
 module.exports = {
-    entry: './src/main.ts',
+    entry: {
+        'vendor': ['d3'],
+        'app': './src/main.ts'
+    },
+    exclude: 'node_modules',
     output: {
-        filename: './dist/bundle.js'
+        path: 'dist',
+        filename: '[name].bundle.js'
     },
     devtool: 'source-map',
     resolve: {
+        // extensions: ['', '.ts', '.js']
         extensions: ['', '.ts']
     },
     module: {
         loaders: [
-            {test: /.ts$/, loader: 'ts-loader'}
+            {test: /.ts$/, loader: 'ts-loader', exclude: /node_modules/}
         ]
     }
 };
