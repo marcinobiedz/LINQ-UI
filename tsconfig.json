@@ -5,6 +5,9 @@
     "noImplicitAny": false,
     "sourceMap": true
   },
+  "files": [
+    "node_modules/@types/d3/index.d.ts"
+  ]
   "exclude": [
     "node_modules"
   ]
