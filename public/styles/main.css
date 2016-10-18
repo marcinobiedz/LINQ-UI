@@ -1,6 +1,14 @@
-body{
+body {
     -webkit-user-select: none;
     -moz-user-select: none;
+    margin: 0;
+}
+
+body > svg#canvas {
+    display: block;
+    width: calc(100% - 40px);
+    height: 1000px;
+    margin: auto;
 }
 
 .node {

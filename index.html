@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="public/styles/main.css">
 </head>
 <body>
-
+<svg id="canvas"></svg>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
 <script>
@@ -98,7 +98,7 @@
 
 
     // ************** Generate the tree diagram	 *****************
-    var margin = {top: 20, right: 20, bottom: 20, left: 50},
+    var margin = {top: 20, right: 20, bottom: 20, left: 20},
             width = 1500 - margin.right - margin.left,
             height = 900 - margin.top - margin.bottom;
 
@@ -114,11 +114,9 @@
                 return [d.y, d.x];
             });
 
-    var svg = d3.select("body").append("svg")
-            .attr("width", width + margin.right + margin.left)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    var svg = d3.select("svg#canvas")
+            .append("g");
+            //.attr("transform", "translate(" + ((margin.left)) + "," + ((margin.top)) + ")");
 
     root = treeData[0];
     root.x0 = height / 2;
@@ -126,7 +124,7 @@
 
     update(root);
 
-    d3.select(self.frameElement).style("height", "500px");
+    //d3.select(self.frameElement).style("height", "500px");
 
     function update(source) {
 
