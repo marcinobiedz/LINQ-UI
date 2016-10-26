@@ -6,7 +6,9 @@ module.exports = {
     exclude: 'node_modules',
     output: {
         path: 'dist',
-        filename: '[name].js'
+        filename: '[name].js',
+        library: "TreeAnalyzer",
+	libraryTarget: "umd"
     },
     devtool: 'source-map',
     resolve: {
