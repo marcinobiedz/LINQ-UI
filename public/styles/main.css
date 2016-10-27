@@ -4,25 +4,47 @@ body {
     margin: 0;
     width: 100vw;
     height: 100vh;
+}
+
+div.main-div {
+    height: 100%;
+    width: 100%;
     position: relative;
 }
 
-div.test-class{
+div.search-panel {
     position: absolute;
-    top: 20px;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    background-color: aquamarine;
+    background-color: #222;
+    height: 5%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    min-height: 18px;
 }
 
-body > svg#canvas {
-    display: block;
-    width: calc(100% - 40px);
-    height: 1000px;
-    margin: auto;
+input.search-panel {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 5%;
 }
 
+button.search-panel {
+    top: 10%;
+    right: 5%;
+    position: absolute;
+    height: 80%;
+}
+
+div.menu-panel {
+    position: absolute;
+    height: 95%;
+    width: 7%;
+    top: 5%;
+    background-color: #222;
+}
+/*=====================================================*/
 .node {
     cursor: pointer;
 }

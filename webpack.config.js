@@ -1,7 +1,7 @@
 module.exports = {
     entry: {
         'vendor': ['d3'],
-        'app': './src/main.ts'
+        'app': './src/MainWindow.ts'
     },
     exclude: 'node_modules',
     output: {
