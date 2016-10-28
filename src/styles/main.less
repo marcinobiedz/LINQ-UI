@@ -1,66 +1,75 @@
 body {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 950px;
+  min-width: 1920px;
 }
 
 div.main-div {
-    height: 100%;
-    width: 100%;
-    position: relative;
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
 
 div.search-panel {
-    position: absolute;
-    background-color: #222;
-    height: 5%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    min-height: 18px;
+  position: absolute;
+  background-color: #222;
+  height: 5%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  min-height: 18px;
 }
 
 input.search-panel {
-    position: absolute;
-    width: 80%;
-    height: 80%;
-    top: 10%;
-    left: 5%;
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 5%;
 }
 
 button.search-panel {
-    top: 10%;
-    right: 5%;
-    position: absolute;
-    height: 80%;
+  top: 10%;
+  right: 5%;
+  position: absolute;
+  height: 80%;
 }
 
 div.menu-panel {
+  position: absolute;
+  height: 95%;
+  width: 10%;
+  top: 5%;
+  background-color: #222;
+
+  ul {
     position: absolute;
-    height: 95%;
-    width: 7%;
-    top: 5%;
-    background-color: #222;
+    right: 5%;
+    left: 5%;
+  }
 }
+
 /*=====================================================*/
 .node {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .node circle {
-    fill: #fff;
-    stroke: steelblue;
-    stroke-width: 3px;
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3px;
 }
 
 .node text {
-    font: 12px sans-serif;
+  font: 12px sans-serif;
 }
 
 .link {
-    fill: none;
-    stroke: #ccc;
-    stroke-width: 2px;
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
 }

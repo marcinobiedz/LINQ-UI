@@ -20,9 +20,9 @@ export class SearchPanel {
     }
 
     private setButton(button: HTMLButtonElement): void {
-        button.classList.add("search-panel", "btn", "btn-success");
+        button.classList.add("search-panel", "btn", "btn-primary");
         button.innerHTML = "Send LINQ expression";
-        button.addEventListener("click", this.handleButtonClick);
+        //button.addEventListener("click", this.handleButtonClick);
     }
 
     private handleButtonClick(event: MouseEvent): void {
