@@ -1,14 +1,14 @@
 module.exports = {
     entry: {
         'vendor': ['d3'],
-        'app': './src/MainWindow.ts'
+        'app': ['./src/styles/main.less', './src/app/MainWindow.ts']
     },
     exclude: 'node_modules',
     output: {
         path: 'dist',
         filename: '[name].js',
         library: "TreeAnalyzer",
-	libraryTarget: "umd"
+        libraryTarget: "umd"
     },
     devtool: 'source-map',
     resolve: {
@@ -16,7 +16,8 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /.ts$/, loader: 'ts-loader', exclude: /node_modules/}
+            {test: /.ts$/, loader: 'ts-loader', exclude: /node_modules/},
+            {test: /.less$/, loader: 'style!css!less', exclude: /node_modules/}
         ]
     }
 };
