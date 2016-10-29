@@ -1,3 +1,5 @@
+@layout-color: #222;
+
 body {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -6,50 +8,76 @@ body {
   height: 100vh;
   min-height: 950px;
   min-width: 1920px;
-}
 
-div.main-div {
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
+  div.main-div {
+    height: 100%;
+    width: 100%;
+    position: relative;
 
-div.search-panel {
-  position: absolute;
-  background-color: #222;
-  height: 5%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  min-height: 18px;
-}
+    div.search-panel {
+      position: absolute;
+      background-color: @layout-color;
+      height: 5%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      min-height: 18px;
 
-input.search-panel {
-  position: absolute;
-  width: 80%;
-  height: 80%;
-  top: 10%;
-  left: 5%;
-}
+      input.search-panel {
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        top: 10%;
+        left: 5%;
+      }
 
-button.search-panel {
-  top: 10%;
-  right: 5%;
-  position: absolute;
-  height: 80%;
-}
+      button.search-panel {
+        top: 10%;
+        right: 5%;
+        position: absolute;
+        height: 80%;
+      }
+    }
 
-div.menu-panel {
-  position: absolute;
-  height: 95%;
-  width: 10%;
-  top: 5%;
-  background-color: #222;
+    div.menu-panel {
+      position: absolute;
+      height: 95%;
+      width: 10%;
+      top: 5%;
+      background-color: @layout-color;
 
-  ul {
-    position: absolute;
-    right: 5%;
-    left: 5%;
+      ul {
+        position: absolute;
+        right: 5%;
+        left: 5%;
+      }
+    }
+
+    div.info-panel {
+      position: absolute;
+      right: 0;
+      height: 95%;
+      width: 15%;
+      top: 5%;
+      border-left: 1px solid @layout-color;
+    }
+
+    div.tree-panel {
+      position: absolute;
+      top: 5%;
+      left: 10%;
+      right: 15%;
+      height: 95%;
+
+      .panel {
+        margin: 5%;
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 }
 

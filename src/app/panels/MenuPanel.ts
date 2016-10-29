@@ -1,9 +1,13 @@
-export class MenuPanel {
+import {Panel} from "../core/Panel";
+import {Response} from "../core/Response";
+
+export class MenuPanel extends Panel {
     private menuList: HTMLUListElement;
     private menuOptions: string[];
     private menuIcons: string[];
 
     constructor(private menuPanel: HTMLDivElement) {
+        super();
         this.menuList = document.createElement("ul");
         this.menuOptions = ["Tree visualization", "History"];
         this.menuIcons = ["glyphicon-tree-conifer", "glyphicon-book"];
@@ -35,5 +39,8 @@ export class MenuPanel {
         const activeItem = Array.from(this.menuList.children).filter(child=>child.classList.contains("active"));
         activeItem ? activeItem.forEach(item=>item.classList.remove("active")) : null;
         (<HTMLLIElement>event.target).classList.add("active");
+    }
+
+    update(response: Response): void {
     }
 }

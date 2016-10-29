@@ -1,8 +1,12 @@
-export class SearchPanel {
+import {Panel} from "../core/Panel";
+import {Response} from "../core/Response";
+
+export class SearchPanel extends Panel {
     private expressionInput: HTMLInputElement;
     private sendButton: HTMLButtonElement;
 
-    constructor(private searchPanel: HTMLDivElement) {
+    constructor(private searchPanel: HTMLDivElement, private updateDashboard: (expression: string)=>void) {
+        super();
         this.expressionInput = document.createElement("input");
         this.sendButton = document.createElement("button");
         this.searchPanel.appendChild(this.expressionInput);
@@ -22,10 +26,14 @@ export class SearchPanel {
     private setButton(button: HTMLButtonElement): void {
         button.classList.add("search-panel", "btn", "btn-primary");
         button.innerHTML = "Send LINQ expression";
-        //button.addEventListener("click", this.handleButtonClick);
+        button.addEventListener("click", this.handleButtonClick.bind(this));
     }
 
     private handleButtonClick(event: MouseEvent): void {
-        alert("test click");
+        const inputLINQ: string = this.expressionInput.value;
+        this.updateDashboard(inputLINQ);
+    }
+
+    update(response: Response): void {
     }
 }
