@@ -40,11 +40,7 @@ export class MainWindow {
             response.serverResponse = JSON.parse((<XMLHttpRequest>event.target).responseText);
             response.resultType = response.serverResponse.isResponseValid;
             response.errorMessage = response.serverResponse.errors;
-            if (response.resultType) {
-
-            } else {
-                this.treePanel.update(response)
-            }
+            this.treePanel.update(response);
         }
     }
 }
