@@ -4,7 +4,6 @@ import {Response} from "../core/Response";
 export class TreePanel extends Panel {
     private treeCanvas: SVGSVGElement;
     private errorElement: HTMLDivElement;
-    private errorBody: HTMLDivElement;
     private errorList: HTMLUListElement;
 
     constructor(private treePanel: HTMLDivElement) {
@@ -13,6 +12,7 @@ export class TreePanel extends Panel {
         this.errorElement = document.createElement("div");
         this.setErrorElement(this.errorElement);
         this.treePanel.appendChild(this.errorElement);
+        this.treePanel.appendChild(this.treeCanvas);
     }
 
     private setErrorElement(errorElement: HTMLDivElement): void {
@@ -35,8 +35,12 @@ export class TreePanel extends Panel {
 
     update(response: Response): void {
         if (response.resultType) {
-
+            this.treeCanvas.style.display = "block";
+            this.errorElement.style.display = "none";
+            this.updateTreeCanvas(response)
         } else {
+            this.treeCanvas.style.display = "none";
+            this.errorElement.style.display = "block";
             this.errorList.innerHTML = "";
             response.errorMessage.forEach((message)=> {
                 const singleEl: HTMLLIElement = document.createElement("li");
@@ -44,5 +48,9 @@ export class TreePanel extends Panel {
                 this.errorList.appendChild(singleEl);
             });
         }
+    }
+
+    private updateTreeCanvas(response: Response) {
+
     }
 }
