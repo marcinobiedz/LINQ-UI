@@ -36,7 +36,7 @@ export class MainWindow {
             const errorMessage: string = "You didn't type any LINQ query!";
             const response: Response = {
                 resultType: false,
-                errorMessage: errorMessage
+                errorMessage: [errorMessage]
             };
             this.treePanel.update(response);
         }

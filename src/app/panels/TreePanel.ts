@@ -5,6 +5,7 @@ export class TreePanel extends Panel {
     private treeCanvas: SVGSVGElement;
     private errorElement: HTMLDivElement;
     private errorBody: HTMLDivElement;
+    private errorList: HTMLUListElement;
 
     constructor(private treePanel: HTMLDivElement) {
         super();
@@ -18,22 +19,30 @@ export class TreePanel extends Panel {
         errorElement.classList.add("panel", "panel-danger");
         const errorHeading: HTMLDivElement = document.createElement("div");
         errorHeading.classList.add("panel-heading");
-        this.errorBody = document.createElement("div");
-        this.errorBody.classList.add("panel-body");
         const errorTitle: HTMLElement = document.createElement("h3");
         errorTitle.classList.add("panel-title");
         errorTitle.innerHTML = "Error!";
         errorHeading.appendChild(errorTitle);
         errorElement.appendChild(errorHeading);
-        errorElement.appendChild(this.errorBody);
-        this.errorBody.innerHTML = "Error message not precised !";
+        //set error message
+        const errorBody = document.createElement("div");
+        errorBody.classList.add("panel-body");
+        errorElement.appendChild(errorBody);
+        // error list
+        this.errorList = document.createElement("ul");
+        errorBody.appendChild(this.errorList);
     }
 
     update(response: Response): void {
         if (response.resultType) {
 
         } else {
-            this.errorBody.innerHTML = response.errorMessage;
+            this.errorList.innerHTML = "";
+            response.errorMessage.forEach((message)=> {
+                const singleEl: HTMLLIElement = document.createElement("li");
+                singleEl.innerHTML = message;
+                this.errorList.appendChild(singleEl);
+            });
         }
     }
 }

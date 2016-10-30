@@ -1,6 +1,6 @@
 export interface Response {
     resultType: boolean;
-    errorMessage?: string;
+    errorMessage?: string[];
 }
 
 export interface ServerResponse {
