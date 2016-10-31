@@ -2,6 +2,7 @@ import {Panel} from "../core/Panel";
 import {Response} from "../core/Response";
 import {TreeDataConverter} from "../converters/TreeDataConverter";
 import {TreeRenderer} from "../renderers/TreeRenderer";
+import {TreeNode} from "../renderers/TreeNode";
 
 export class TreePanel extends Panel {
     private treeCanvas: SVGSVGElement;
@@ -58,92 +59,91 @@ export class TreePanel extends Panel {
 
     private updateTreeCanvas(response: Response) {
         this.treeCanvas.innerHTML = "";
-        const convertedData = this.treeDataConverter.convert(response.serverResponse.tree);
-        this.treeRenderer.render(this.convertedData);
+        const convertedData: TreeNode = this.treeDataConverter.convert(response.serverResponse.tree);
+        this.treeRenderer.render(convertedData);
     }
 
-    private convertedData = [
-        {
-            "name": "Top Level",
-            "parent": "null",
-            "children": [
-                {
-                    "name": "Level 2: A",
-                    "parent": "Top Level",
-                    "children": [
-                        {
-                            "name": "Son of A",
-                            "parent": "Level 2: B"
-                        },
-                        {
-                            "name": "Daughter of A",
-                            "parent": "Level 2: B"
-                        }
-                    ]
-                },
-                {
-                    "name": "Level 2: B",
-                    "parent": "Top Level",
-                    "children": [
-                        {
-                            "name": "Daughter of A",
-                            "parent": "Level 2: B",
-                            "children": [
-                                {
-                                    "name": "Son of A",
-                                    "parent": "Level 2: B"
-                                },
-                                {
-                                    "name": "Daughter of A",
-                                    "parent": "Level 2: B",
-                                    "children": [
-                                        {
-                                            "name": "Top Level",
-                                            "parent": "null",
-                                            "children": [
-                                                {
-                                                    "name": "Level 2: A",
-                                                    "parent": "Top Level",
-                                                    "children": [
-                                                        {
-                                                            "name": "Son of A",
-                                                            "parent": "Level 2: B"
-                                                        },
-                                                        {
-                                                            "name": "Daughter of A",
-                                                            "parent": "Level 2: B"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "name": "Level 2: B",
-                                                    "parent": "Top Level",
-                                                    "children": [
-                                                        {
-                                                            "name": "Daughter of A",
-                                                            "parent": "Level 2: B",
-                                                            "children": [
-                                                                {
-                                                                    "name": "Son of A",
-                                                                    "parent": "Level 2: B"
-                                                                },
-                                                                {
-                                                                    "name": "Daughter of A",
-                                                                    "parent": "Level 2: B"
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
-    ];
+    private convertedData =
+    {
+        "name": "Top Level",
+        "parent": "null",
+        "children": [
+            {
+                "name": "Level 2: A",
+                "parent": "Top Level",
+                "children": [
+                    {
+                        "name": "Son of A",
+                        "parent": "Level 2: B"
+                    },
+                    {
+                        "name": "Daughter of A",
+                        "parent": "Level 2: B"
+                    }
+                ]
+            },
+            {
+                "name": "Level 2: B",
+                "parent": "Top Level",
+                "children": [
+                    {
+                        "name": "Daughter of A",
+                        "parent": "Level 2: B",
+                        "children": [
+                            {
+                                "name": "Son of A",
+                                "parent": "Level 2: B"
+                            },
+                            {
+                                "name": "Daughter of A",
+                                "parent": "Level 2: B",
+                                "children": [
+                                    {
+                                        "name": "Top Level",
+                                        "parent": "null",
+                                        "children": [
+                                            {
+                                                "name": "Level 2: A",
+                                                "parent": "Top Level",
+                                                "children": [
+                                                    {
+                                                        "name": "Son of A",
+                                                        "parent": "Level 2: B"
+                                                    },
+                                                    {
+                                                        "name": "Daughter of A",
+                                                        "parent": "Level 2: B"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "name": "Level 2: B",
+                                                "parent": "Top Level",
+                                                "children": [
+                                                    {
+                                                        "name": "Daughter of A",
+                                                        "parent": "Level 2: B",
+                                                        "children": [
+                                                            {
+                                                                "name": "Son of A",
+                                                                "parent": "Level 2: B"
+                                                            },
+                                                            {
+                                                                "name": "Daughter of A",
+                                                                "parent": "Level 2: B"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    };
 }
