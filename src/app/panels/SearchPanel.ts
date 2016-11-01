@@ -31,9 +31,12 @@ export class SearchPanel extends Panel {
 
     private handleButtonClick(event: MouseEvent): void {
         const inputLINQ: string = this.expressionInput.value;
-        this.updateDashboard(inputLINQ);
+        this.updateDashboard('db.Customers.AsQueryable().Where(cus => cus.CustomerID > 5 ' +
+            '&& cus.FirstName.StartsWith("Kat")).Take(5).Select(cus => new { cus.EmailAddress })');
+        //this.updateDashboard(inputLINQ);
     }
 
-    update(response: Response): void {
+    update(response: Response, expression: string): void {
+        this.expressionInput.value = expression;
     }
 }

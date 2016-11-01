@@ -5,6 +5,7 @@ export class MenuPanel extends Panel {
     private menuList: HTMLUListElement;
     private menuOptions: string[];
     private menuIcons: string[];
+    private previousQueries: string[] = [];
 
     constructor(private menuPanel: HTMLDivElement) {
         super();
@@ -32,7 +33,8 @@ export class MenuPanel extends Panel {
     }
 
     private createMenuItem(icon: string, option: string): string {
-        return '<span class="glyphicon ' + icon + '\" aria-hidden=\"true\"></span> ' + option;
+        const item: string = '<span class="glyphicon ' + icon + '\" aria-hidden=\"true\"></span> ' + option;
+        return option == "History" ? item + ' <span class="badge">0</span>' : item;
     }
 
     private changeMenuItem(event: MouseEvent): void {
@@ -41,6 +43,12 @@ export class MenuPanel extends Panel {
         (<HTMLLIElement>event.target).classList.add("active");
     }
 
-    update(response: Response): void {
+    update(response: Response, expression: string): void {
+        if (response.resultType) {
+            if (this.previousQueries.indexOf(expression) < 0) {
+                this.previousQueries.push(expression);
+                this.menuList.querySelector("span.badge").innerHTML = this.previousQueries.length.toString();
+            }
+        }
     }
 }
