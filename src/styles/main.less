@@ -6,8 +6,8 @@ body {
   margin: 0;
   width: 100vw;
   height: 100vh;
-  //min-height: 950px;
-  //min-width: 1920px;
+  min-height: 950px;
+  min-width: 1920px;
 
   div.main-div {
     height: 100%;
@@ -45,12 +45,9 @@ body {
       width: 10%;
       top: 5%;
       background-color: @layout-color;
+      padding: 0.5%;
 
       ul {
-        position: absolute;
-        right: 5%;
-        left: 5%;
-
         li {
           cursor: pointer;
           cursor: hand;
@@ -64,7 +61,12 @@ body {
       height: 95%;
       width: 15%;
       top: 5%;
-      border-left: 1px solid @layout-color;
+      padding: 0.5%;
+
+      .right-info{
+        float: right;
+        font-weight: bold;
+      }
     }
 
     div.tree-panel {

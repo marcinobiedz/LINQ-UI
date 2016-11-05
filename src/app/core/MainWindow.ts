@@ -41,12 +41,12 @@ export class MainWindow {
     private handleServerRequest(event: Event): void {
         if ((<XMLHttpRequest>event.target).readyState === XMLHttpRequest.DONE
             && (<XMLHttpRequest>event.target).status === 200) {
-            debugger;
             const response: Response = new Response();
             response.serverResponse = JSON.parse((<XMLHttpRequest>event.target).responseText);
             response.resultType = response.serverResponse.isResponseValid;
             response.errorMessage = response.serverResponse.errors;
             this.treePanel.update(response);
+            this.infoPanel.update(response);
             this.menuPanel.update(response, this.currentExpression);
         }
     }
