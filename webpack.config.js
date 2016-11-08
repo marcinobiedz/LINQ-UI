@@ -13,7 +13,7 @@ module.exports = {
         contentBase: './',
         publicPath: '/',
         inline: true,
-        port: 8080
+        port: 63342
     },
     devtool: 'source-map',
     resolve: {
