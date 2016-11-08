@@ -9,6 +9,12 @@ module.exports = {
         library: "TreeAnalyzer",
         libraryTarget: "umd"
     },
+    devServer: {
+        contentBase: './',
+        publicPath: '/',
+        inline: true,
+        port: 8080
+    },
     devtool: 'source-map',
     resolve: {
         extensions: ['', '.ts', '.js']
