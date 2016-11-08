@@ -4,9 +4,11 @@
   "description": "msc project ui",
   "main": "index.js",
   "scripts": {
+    "server": "webpack-dev-server",
     "compile": "tsc",
     "dev": "webpack -w",
-    "bundle": "webpack --optimize-minimize"
+    "bundle": "webpack",
+    "demo": "webpack && webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -26,7 +28,8 @@
     "style-loader": "0.13.1",
     "ts-loader": "0.8.2",
     "typescript": "2.0.3",
-    "webpack": "1.13.2"
+    "webpack": "1.13.2",
+    "webpack-dev-server": "1.16.2"
   },
   "dependencies": {
     "d3": "3.5.17"
