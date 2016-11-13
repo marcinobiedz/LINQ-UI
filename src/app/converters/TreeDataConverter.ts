@@ -9,8 +9,7 @@ export class TreeDataConverter {
         const parentServerNode: ResponseTreeNode = tree.filter(node=> {
             return node.ParentId == null;
         })[0];
-        // this.parentNode.name = parentServerNode.Text;
-        this.parentNode.name = "a";
+        this.parentNode.name = parentServerNode.Text;
         this.createNodes(tree, parentServerNode.Id, this.parentNode);
         return this.parentNode;
     }
@@ -20,8 +19,7 @@ export class TreeDataConverter {
         filteredNodes.length > 0 ? parentNode.children = [] : null;
         filteredNodes.forEach(node=> {
             const childNode: TreeNode = new TreeNode();
-            // childNode.name = node.Text;
-            childNode.name = "b";
+            childNode.name = node.Text;
             parentNode.children.push(childNode);
             this.createNodes(tree, node.Id, childNode);
         })

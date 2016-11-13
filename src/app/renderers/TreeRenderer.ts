@@ -62,7 +62,10 @@ export class TreeRenderer {
             .attr("transform", d => {
                 return "translate(" + source.y0 + "," + source.x0 + ")";
             })
-            .on("click", this.clickNode.bind(this));
+            .on("click", this.clickNode.bind(this))
+            // .on("mousemove", (d)=>console.log(d3.event))
+            .on("mouseleave", d=>console.log(d3.event));
+
         nodeEnter.append("circle")
             .attr("r", 1e-6)
             .style("fill", d => {
@@ -153,5 +156,9 @@ export class TreeRenderer {
             d._children = null;
         }
         this.update(d);
+    }
+
+    private showTooltip(d){
+        debugger;
     }
 }
