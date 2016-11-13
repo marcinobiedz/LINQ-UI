@@ -48,7 +48,7 @@ export class InfoPanel extends Panel {
 
     private createTable(): void {
         const table = document.createElement("table");
-        table.classList.add("table", "table-bordered", "table-striped");
+        table.classList.add("table", "table-bordered", "table-hover");
         const headers = document.createElement("thead");
         const labels = ["#", "Initial count", "Final count", "Execution time"];
         labels.forEach(label=> {
