@@ -105,6 +105,7 @@ body {
         }
 
         .node text {
+          display: none;
           font: 12px sans-serif;
         }
 
@@ -115,6 +116,16 @@ body {
         }
       }
     }
+  }
+
+  span#linq-ui-tooltip {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 9999999;
   }
 }
 

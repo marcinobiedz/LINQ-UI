@@ -3,6 +3,7 @@ import {Margins, TreeSize} from "./Measures";
 import {TreeNode} from "./TreeNode";
 
 export class TreeRenderer {
+    private tooltipElement: HTMLSpanElement;
     private svgClientRect: ClientRect;
     private margins: Margins;
     private treeSize: TreeSize;
@@ -15,6 +16,7 @@ export class TreeRenderer {
     private svg;
 
     constructor(private canvas: SVGSVGElement) {
+        this.tooltipElement = <HTMLSpanElement>document.querySelector("span#linq-ui-tooltip");
         this.svgClientRect = canvas.getBoundingClientRect();
         this.margins = {
             top: 20,
@@ -63,8 +65,8 @@ export class TreeRenderer {
                 return "translate(" + source.y0 + "," + source.x0 + ")";
             })
             .on("click", this.clickNode.bind(this))
-            // .on("mousemove", (d)=>console.log(d3.event))
-            .on("mouseleave", d=>console.log(d3.event));
+            .on("mousemove", this.showTooltip.bind(this))
+            .on("mouseleave", this.hideTooltip.bind(this));
 
         nodeEnter.append("circle")
             .attr("r", 1e-6)
@@ -158,7 +160,15 @@ export class TreeRenderer {
         this.update(d);
     }
 
-    private showTooltip(d){
-        debugger;
+    private showTooltip(d) {
+        this.tooltipElement.innerHTML = d.name;
+        this.tooltipElement.style.top = ((<MouseEvent>d3.event).clientY - 40) + "px";
+        this.tooltipElement.style.left = (<MouseEvent>d3.event).clientX + "px";
+        this.tooltipElement.style.visibility = "visible";
+    }
+
+    private hideTooltip(d) {
+        this.tooltipElement.style.visibility = "hidden";
+        this.tooltipElement.innerHTML = "";
     }
 }
