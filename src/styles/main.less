@@ -1,4 +1,5 @@
 @layout-color: #222;
+@import "~c3/c3.min.css";
 
 body {
   -webkit-user-select: none;
@@ -59,13 +60,19 @@ body {
       position: absolute;
       right: 0;
       height: 95%;
-      width: 15%;
+      width: 25%;
       top: 5%;
       padding: 0.5%;
 
-      .right-info{
-        float: right;
-        font-weight: bold;
+      .chart-panel {
+        height: 50%;
+        width: 100%;
+      }
+
+      .table-panel {
+        padding: 3%;
+        height: 50%;
+        width: 100%;
       }
     }
 
@@ -73,7 +80,7 @@ body {
       position: absolute;
       top: 5%;
       left: 10%;
-      right: 15%;
+      right: 25%;
       height: 95%;
 
       .panel {

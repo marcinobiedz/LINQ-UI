@@ -1,8 +1,8 @@
 export interface ServerResponse {
     isResponseValid: boolean;
-    executionTime: number;
-    finalCount: number;
-    initialCount: number;
+    executionTimes: number[];
+    finalCounts: number[];
+    initialCounts: number[];
     errors: string[];
     tree?: ResponseTreeNode[];
 }

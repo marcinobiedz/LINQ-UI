@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/marcinobiedz/LINQ-UI#readme",
   "devDependencies": {
+    "@types/c3": "0.4.37",
     "@types/d3": "3.5.36",
     "css-loader": "0.25.0",
     "less": "2.7.1",
@@ -32,6 +33,7 @@
     "webpack-dev-server": "1.16.2"
   },
   "dependencies": {
+    "c3": "0.4.11",
     "d3": "3.5.17"
   }
 }
