@@ -31,8 +31,14 @@ export class SearchPanel extends Panel {
 
     private handleButtonClick(event: MouseEvent): void {
         const inputLINQ: string = this.expressionInput.value;
-        this.updateDashboard('db.Customers.Where(cus => cus.CustomerID > 5 ' +
-            '&& cus.FirstName.StartsWith("Kat")).Select(cus => new { cus.EmailAddress })');
+        // this.updateDashboard('db.Customers.Where(cus => cus.CustomerID > 5 ' +
+        //     '&& cus.FirstName.StartsWith("Kat")).Select(cus => cus.EmailAddress)');
+        this.updateDashboard('db.SalesOrderDetails.Join(db.SalesOrderHeaders,' +
+            'sod => sod.SalesOrderID,' +
+            'soh => soh.SalesOrderID,' +
+            '(sod, soh) => new { ID = sod.SalesOrderDetailID, An = soh.AccountNumber })' +
+            '.Where(obj => obj.An.StartsWith("10-4020-0002"))' +
+            '.Select(sel => sel.ID)');
         //this.updateDashboard(inputLINQ);
     }
 
