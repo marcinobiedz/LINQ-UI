@@ -1,24 +1,24 @@
-import {Panel} from "../core/Panel";
+import {Panel, Updatable} from "../core/Panel";
 import {Response} from "../core/Response";
 import {TreeDataConverter} from "../converters/TreeDataConverter";
 import {TreeRenderer} from "../renderers/TreeRenderer";
 import {TreeNode} from "../renderers/TreeNode";
 
-export class TreePanel extends Panel {
+export class TreePanel extends Panel implements Updatable {
     private treeCanvas: SVGSVGElement;
     private errorElement: HTMLDivElement;
     private errorList: HTMLUListElement;
     private treeRenderer: TreeRenderer;
     private treeDataConverter: TreeDataConverter;
 
-    constructor(private treePanel: HTMLDivElement) {
-        super();
+    constructor(treePanel: HTMLDivElement) {
+        super(treePanel);
         this.treeCanvas = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        this.treePanel.appendChild(this.treeCanvas);
+        this.mainPanel.appendChild(this.treeCanvas);
         this.treeRenderer = new TreeRenderer(this.treeCanvas);
         this.errorElement = document.createElement("div");
         this.setErrorElement(this.errorElement);
-        this.treePanel.appendChild(this.errorElement);
+        this.mainPanel.appendChild(this.errorElement);
         this.treeDataConverter = new TreeDataConverter();
     }
 
@@ -49,7 +49,7 @@ export class TreePanel extends Panel {
             this.treeCanvas.style.display = "none";
             this.errorElement.style.display = "block";
             this.errorList.innerHTML = "";
-            response.errorMessage.forEach((message)=> {
+            response.errorMessage.forEach((message) => {
                 const singleEl: HTMLLIElement = document.createElement("li");
                 singleEl.innerHTML = message;
                 this.errorList.appendChild(singleEl);

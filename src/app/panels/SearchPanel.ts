@@ -1,16 +1,16 @@
-import {Panel} from "../core/Panel";
+import {Panel, Updatable} from "../core/Panel";
 import {Response} from "../core/Response";
 
-export class SearchPanel extends Panel {
+export class SearchPanel extends Panel implements Updatable {
     private expressionInput: HTMLInputElement;
     private sendButton: HTMLButtonElement;
 
-    constructor(private searchPanel: HTMLDivElement, private updateDashboard: (expression: string)=>void) {
-        super();
+    constructor(searchPanel: HTMLDivElement, private updateDashboard: (expression: string)=>void) {
+        super(searchPanel);
         this.expressionInput = document.createElement("input");
         this.sendButton = document.createElement("button");
-        this.searchPanel.appendChild(this.expressionInput);
-        this.searchPanel.appendChild(this.sendButton);
+        this.mainPanel.appendChild(this.expressionInput);
+        this.mainPanel.appendChild(this.sendButton);
         this.setInput(this.expressionInput);
         this.setButton(this.sendButton);
     }

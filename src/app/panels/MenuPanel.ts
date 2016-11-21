@@ -1,19 +1,19 @@
-import {Panel} from "../core/Panel";
+import {Panel, Updatable} from "../core/Panel";
 import {Response} from "../core/Response";
 
-export class MenuPanel extends Panel {
+export class MenuPanel extends Panel implements Updatable {
     private menuList: HTMLUListElement;
     private menuOptions: string[];
     private menuIcons: string[];
     private previousQueries: string[] = [];
 
-    constructor(private menuPanel: HTMLDivElement) {
-        super();
+    constructor(menuPanel: HTMLDivElement) {
+        super(menuPanel);
         this.menuList = document.createElement("ul");
         this.menuOptions = ["Tree visualization", "History"];
         this.menuIcons = ["glyphicon-tree-conifer", "glyphicon-book"];
 
-        this.menuPanel.appendChild(this.menuList);
+        this.mainPanel.appendChild(this.menuList);
         this.setMenuList(this.menuList);
     }
 
@@ -38,8 +38,8 @@ export class MenuPanel extends Panel {
     }
 
     private changeMenuItem(event: MouseEvent): void {
-        const activeItem = Array.from(this.menuList.children).filter(child=>child.classList.contains("active"));
-        activeItem ? activeItem.forEach(item=>item.classList.remove("active")) : null;
+        const activeItem = Array.from(this.menuList.children).filter(child => child.classList.contains("active"));
+        activeItem ? activeItem.forEach(item => item.classList.remove("active")) : null;
         (<HTMLLIElement>event.target).classList.add("active");
     }
 

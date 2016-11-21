@@ -1,36 +1,36 @@
-import {Panel} from "../core/Panel";
+import {Panel, Updatable} from "../core/Panel";
 import {Response} from "../core/Response";
 import {render} from "../renderers/InfoChart";
 import {ChartAPI} from "c3";
 import {ServerResponse} from "../core/ServerResponse";
 
-export class InfoPanel extends Panel {
+export class InfoPanel extends Panel implements Updatable {
     private chartPanel: HTMLDivElement;
     private tablePanel: HTMLDivElement;
     private tableBody: HTMLElement;
     private chartAPI: ChartAPI;
 
-    constructor(private infoPanel: HTMLDivElement) {
-        super();
-        this.infoPanel.hidden = true;
+    constructor(infoPanel: HTMLDivElement) {
+        super(infoPanel);
+        this.mainPanel.hidden = true;
         this.chartPanel = document.createElement("div");
         this.chartPanel.id = "chart-panel";
         this.chartPanel.classList.add("chart-panel");
-        this.infoPanel.appendChild(this.chartPanel);
+        this.mainPanel.appendChild(this.chartPanel);
         this.tablePanel = document.createElement("div");
         this.tablePanel.id = "table-panel";
         this.tablePanel.classList.add("table-panel");
-        this.infoPanel.appendChild(this.tablePanel);
+        this.mainPanel.appendChild(this.tablePanel);
         this.createTable();
     }
 
     update(response: Response, expression?: string): void {
         if (response.resultType) {
-            this.infoPanel.hidden = false;
+            this.mainPanel.hidden = false;
             this.chartAPI = render(this.chartPanel, response.serverResponse);
             this.updateTable(response.serverResponse);
         } else {
-            this.infoPanel.hidden = true;
+            this.mainPanel.hidden = true;
         }
     }
 
