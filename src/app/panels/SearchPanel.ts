@@ -45,4 +45,8 @@ export class SearchPanel extends Panel {
     update(response: Response, expression: string): void {
         this.expressionInput.value = expression;
     }
+
+    toggle(show: boolean): void {
+
+    }
 }

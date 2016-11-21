@@ -5,20 +5,24 @@ import {Response} from "./Response";
 import * as Constants from "../Constants";
 import {ServerResponse} from "./ServerResponse";
 import {InfoPanel} from "../panels/InfoPanel";
+import {HistoryPanel} from "../panels/HistoryPanel";
 
 export class MainWindow {
     private searchPanel: SearchPanel;
     private menuPanel: MenuPanel;
     private treePanel: TreePanel;
     private infoPanel: InfoPanel;
+    private historyPanel: HistoryPanel;
     private currentExpression: string;
 
     constructor(private mainDiv: HTMLDivElement) {
         this.searchPanel = new SearchPanel(<HTMLDivElement>this.mainDiv.querySelector(".search-panel"),
             this.updateDashboard.bind(this));
-        this.menuPanel = new MenuPanel(<HTMLDivElement>this.mainDiv.querySelector(".menu-panel"));
+        this.menuPanel = new MenuPanel(<HTMLDivElement>this.mainDiv.querySelector(".menu-panel"),
+            this.showHistory.bind(this), this.showTree.bind(this));
         this.treePanel = new TreePanel(<HTMLDivElement>this.mainDiv.querySelector(".tree-panel"));
-        this.infoPanel = new InfoPanel(<HTMLDivElement>this.mainDiv.querySelector(".info-panel"))
+        this.infoPanel = new InfoPanel(<HTMLDivElement>this.mainDiv.querySelector(".info-panel"));
+        this.historyPanel = new HistoryPanel(<HTMLDivElement>this.mainDiv.querySelector(".history-panel"));
     }
 
     private updateDashboard(expression: string): void {
@@ -49,5 +53,17 @@ export class MainWindow {
             this.infoPanel.update(response);
             this.menuPanel.update(response, this.currentExpression);
         }
+    }
+
+    private showHistory(): void {
+        this.treePanel.toggle(false);
+        this.infoPanel.toggle(false);
+        this.historyPanel.toggle(true);
+    }
+
+    private showTree(): void {
+        this.treePanel.toggle(true);
+        this.infoPanel.toggle(true);
+        this.historyPanel.toggle(false);
     }
 }

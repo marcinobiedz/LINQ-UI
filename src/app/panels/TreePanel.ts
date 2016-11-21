@@ -49,7 +49,7 @@ export class TreePanel extends Panel {
             this.treeCanvas.style.display = "none";
             this.errorElement.style.display = "block";
             this.errorList.innerHTML = "";
-            response.errorMessage.forEach((message)=> {
+            response.errorMessage.forEach((message) => {
                 const singleEl: HTMLLIElement = document.createElement("li");
                 singleEl.innerHTML = message;
                 this.errorList.appendChild(singleEl);
@@ -61,5 +61,9 @@ export class TreePanel extends Panel {
         this.treeCanvas.innerHTML = "";
         const convertedData: TreeNode = this.treeDataConverter.convert(response.serverResponse.tree);
         this.treeRenderer.render(convertedData);
+    }
+
+    toggle(show: boolean): void {
+        this.treePanel.hidden = show;
     }
 }

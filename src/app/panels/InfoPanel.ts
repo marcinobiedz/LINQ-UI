@@ -51,7 +51,7 @@ export class InfoPanel extends Panel {
         table.classList.add("table", "table-bordered", "table-hover");
         const headers = document.createElement("thead");
         const labels = ["#", "Initial count", "Final count", "Execution time"];
-        labels.forEach(label=> {
+        labels.forEach(label => {
             const header = document.createElement("th");
             header.innerHTML = label;
             header.style.textAlign = "center";
@@ -61,5 +61,9 @@ export class InfoPanel extends Panel {
         this.tableBody = document.createElement("tbody");
         table.appendChild(this.tableBody);
         this.tablePanel.appendChild(table);
+    }
+
+    toggle(show: boolean): void {
+        this.infoPanel.hidden = show;
     }
 }

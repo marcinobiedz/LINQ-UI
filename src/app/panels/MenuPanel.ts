@@ -7,7 +7,9 @@ export class MenuPanel extends Panel {
     private menuIcons: string[];
     private previousQueries: string[] = [];
 
-    constructor(private menuPanel: HTMLDivElement) {
+    constructor(private menuPanel: HTMLDivElement,
+                private showHistory: ()=>void,
+                private showTree: ()=>void) {
         super();
         this.menuList = document.createElement("ul");
         this.menuOptions = ["Tree visualization", "History"];
@@ -38,8 +40,9 @@ export class MenuPanel extends Panel {
     }
 
     private changeMenuItem(event: MouseEvent): void {
-        const activeItem = Array.from(this.menuList.children).filter(child=>child.classList.contains("active"));
-        activeItem ? activeItem.forEach(item=>item.classList.remove("active")) : null;
+        const activeItem = Array.from(this.menuList.children).filter(child => child.classList.contains("active"));
+        activeItem ? activeItem.forEach(item => item.classList.remove("active")) : null;
+
         (<HTMLLIElement>event.target).classList.add("active");
     }
 
@@ -50,5 +53,9 @@ export class MenuPanel extends Panel {
                 this.menuList.querySelector("span.badge").innerHTML = this.previousQueries.length.toString();
             }
         }
+    }
+
+    toggle(show: boolean): void {
+
     }
 }
