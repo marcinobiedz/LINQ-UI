@@ -34,7 +34,8 @@ export class MainWindow {
         );
         this.treePanel = new TreePanel(<HTMLDivElement>this.mainDiv.querySelector(".tree-panel"));
         this.infoPanel = new InfoPanel(<HTMLDivElement>this.mainDiv.querySelector(".info-panel"));
-        this.historyPanel = new HistoryPanel(<HTMLDivElement>this.mainDiv.querySelector(".history-panel"));
+        this.historyPanel = new HistoryPanel(<HTMLDivElement>this.mainDiv.querySelector(".history-panel"),
+            this.updateDashboard.bind(this));
         this.showTree();
     }
 
