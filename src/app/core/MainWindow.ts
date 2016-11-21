@@ -3,7 +3,6 @@ import {MenuPanel} from "../panels/MenuPanel";
 import {TreePanel} from "../panels/TreePanel";
 import {Response} from "./Response";
 import * as Constants from "../Constants";
-import {ServerResponse} from "./ServerResponse";
 import {InfoPanel} from "../panels/InfoPanel";
 import {HistoryPanel} from "../panels/HistoryPanel";
 
@@ -18,13 +17,30 @@ export class MainWindow {
     constructor(private mainDiv: HTMLDivElement) {
         this.searchPanel = new SearchPanel(<HTMLDivElement>this.mainDiv.querySelector(".search-panel"),
             this.updateDashboard.bind(this));
-        this.menuPanel = new MenuPanel(<HTMLDivElement>this.mainDiv.querySelector(".menu-panel"));
+        this.menuPanel = new MenuPanel(<HTMLDivElement>this.mainDiv.querySelector(".menu-panel"), [
+                {
+                    label: "Tree visualization",
+                    launcher: this.showTree.bind(this),
+                    hasIcon: true,
+                    iconName: "glyphicon-tree-conifer"
+                },
+                {
+                    label: "History",
+                    launcher: this.showHistory.bind(this),
+                    hasIcon: true,
+                    iconName: "glyphicon-book"
+                }
+            ]
+        );
         this.treePanel = new TreePanel(<HTMLDivElement>this.mainDiv.querySelector(".tree-panel"));
         this.infoPanel = new InfoPanel(<HTMLDivElement>this.mainDiv.querySelector(".info-panel"));
         this.historyPanel = new HistoryPanel(<HTMLDivElement>this.mainDiv.querySelector(".history-panel"));
+        this.showTree();
     }
 
     private updateDashboard(expression: string): void {
+        this.showTree();
+        this.menuPanel.markItem(0);
         if (expression.length > 0) {
             expression = expression.replace(/\s+/g, '');
             this.currentExpression = expression;
@@ -38,6 +54,7 @@ export class MainWindow {
             const response = new Response();
             response.errorMessage.push("You didn't type any LINQ query!");
             this.treePanel.update(response);
+            this.infoPanel.update(response);
         }
     }
 
@@ -50,7 +67,19 @@ export class MainWindow {
             response.errorMessage = response.serverResponse.errors;
             this.treePanel.update(response);
             this.infoPanel.update(response);
-            this.menuPanel.update(response, this.currentExpression);
+            this.historyPanel.update(response, this.currentExpression);
         }
+    }
+
+    private showTree(): void {
+        this.historyPanel.hide(true);
+        this.treePanel.hide(false);
+        this.infoPanel.hide(false);
+    }
+
+    private showHistory(): void {
+        this.historyPanel.hide(false);
+        this.treePanel.hide(true);
+        this.infoPanel.hide(true);
     }
 }

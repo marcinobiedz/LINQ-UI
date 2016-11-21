@@ -12,7 +12,6 @@ export class InfoPanel extends Panel implements Updatable {
 
     constructor(infoPanel: HTMLDivElement) {
         super(infoPanel);
-        this.mainPanel.hidden = true;
         this.chartPanel = document.createElement("div");
         this.chartPanel.id = "chart-panel";
         this.chartPanel.classList.add("chart-panel");
@@ -22,15 +21,19 @@ export class InfoPanel extends Panel implements Updatable {
         this.tablePanel.classList.add("table-panel");
         this.mainPanel.appendChild(this.tablePanel);
         this.createTable();
+        this.chartPanel.hidden = true;
+        this.tablePanel.hidden = true;
     }
 
     update(response: Response, expression?: string): void {
         if (response.resultType) {
-            this.mainPanel.hidden = false;
+            this.chartPanel.hidden = false;
+            this.tablePanel.hidden = false;
             this.chartAPI = render(this.chartPanel, response.serverResponse);
             this.updateTable(response.serverResponse);
         } else {
-            this.mainPanel.hidden = true;
+            this.chartPanel.hidden = true;
+            this.tablePanel.hidden = true;
         }
     }
 
@@ -51,7 +54,7 @@ export class InfoPanel extends Panel implements Updatable {
         table.classList.add("table", "table-bordered", "table-hover");
         const headers = document.createElement("thead");
         const labels = ["#", "Initial count", "Final count", "Execution time"];
-        labels.forEach(label=> {
+        labels.forEach(label => {
             const header = document.createElement("th");
             header.innerHTML = label;
             header.style.textAlign = "center";
