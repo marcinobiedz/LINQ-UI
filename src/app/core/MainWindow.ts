@@ -25,6 +25,13 @@ export class MainWindow {
                     iconName: "glyphicon-tree-conifer"
                 },
                 {
+                    label: "Analyze",
+                    launcher: () => {
+                    },
+                    hasIcon: true,
+                    iconName: "glyphicon-link"
+                },
+                {
                     label: "History",
                     launcher: this.showHistory.bind(this),
                     hasIcon: true,
