@@ -11,5 +11,6 @@ export interface ResponseTreeNode {
     ExpressionString: string;
     Id: number;
     ParentId?: number;
+    NodeText?: string;
     Text: string;
 }

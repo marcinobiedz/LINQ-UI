@@ -9,6 +9,7 @@ export class InfoPanel extends Panel implements Updatable {
     private tablePanel: HTMLDivElement;
     private tableBody: HTMLElement;
     private chartAPI: ChartAPI;
+    private downloadButton: HTMLButtonElement;
 
     constructor(infoPanel: HTMLDivElement) {
         super(infoPanel);
@@ -19,6 +20,9 @@ export class InfoPanel extends Panel implements Updatable {
         this.tablePanel = document.createElement("div");
         this.tablePanel.id = "table-panel";
         this.tablePanel.classList.add("table-panel");
+        this.downloadButton = document.createElement("button");
+        this.downloadButton.classList.add("btn", "btn-success");
+        this.downloadButton.innerText = "Download CSV";
         this.mainPanel.appendChild(this.tablePanel);
         this.createTable();
         this.chartPanel.hidden = true;
@@ -64,5 +68,6 @@ export class InfoPanel extends Panel implements Updatable {
         this.tableBody = document.createElement("tbody");
         table.appendChild(this.tableBody);
         this.tablePanel.appendChild(table);
+        this.tablePanel.appendChild(this.downloadButton);
     }
 }

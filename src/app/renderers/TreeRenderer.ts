@@ -76,14 +76,17 @@ export class TreeRenderer {
 
         nodeEnter.append("text")
             .attr("x", d => {
-                return d.children || d._children ? -13 : 13;
+                return -10;
+            })
+            .attr("y", d => {
+                return 21;
             })
             .attr("dy", ".35em")
             .attr("text-anchor", d => {
-                return d.children || d._children ? "end" : "start";
+                return "start";
             })
             .text(d => {
-                return d.name;
+                return d.nodeText;
             })
             .style("fill-opacity", 1e-6);
 
