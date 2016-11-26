@@ -5,18 +5,21 @@ import {Response} from "./Response";
 import * as Constants from "../Constants";
 import {InfoPanel} from "../panels/InfoPanel";
 import {HistoryPanel} from "../panels/HistoryPanel";
+import {DbPanel} from "../panels/DbPanel";
 
 export class MainWindow {
     private searchPanel: SearchPanel;
     private menuPanel: MenuPanel;
     private treePanel: TreePanel;
     private infoPanel: InfoPanel;
+    private dbPanel: DbPanel;
     private historyPanel: HistoryPanel;
     private currentExpression: string;
 
     constructor(private mainDiv: HTMLDivElement) {
         this.searchPanel = new SearchPanel(<HTMLDivElement>this.mainDiv.querySelector(".search-panel"),
             this.updateDashboard.bind(this));
+        this.dbPanel = new DbPanel(<HTMLDivElement>this.mainDiv.querySelector(".db-panel"));
         this.menuPanel = new MenuPanel(<HTMLDivElement>this.mainDiv.querySelector(".menu-panel"), [
                 {
                     label: "Tree visualization",
@@ -25,11 +28,10 @@ export class MainWindow {
                     iconName: "glyphicon-tree-conifer"
                 },
                 {
-                    label: "Analyze",
-                    launcher: () => {
-                    },
+                    label: "DB Schema",
+                    launcher: this.showDB.bind(this),
                     hasIcon: true,
-                    iconName: "glyphicon-link"
+                    iconName: "glyphicon-list-alt"
                 },
                 {
                     label: "History",
@@ -55,8 +57,10 @@ export class MainWindow {
             this.searchPanel.update(new Response(), expression);
             const xhr: XMLHttpRequest = new XMLHttpRequest();
             xhr.open(Constants.METHOD, Constants.URL, true);
+            xhr.timeout = 60000;
             xhr.setRequestHeader(Constants.AJAX_HEADERS[0], Constants.AJAX_HEADERS[1]);
             xhr.addEventListener("readystatechange", this.handleServerRequest.bind(this));
+            xhr.ontimeout = this.handleTimeout.bind(this);
             xhr.send(JSON.stringify(expression));
         } else {
             const response = new Response();
@@ -79,15 +83,31 @@ export class MainWindow {
         }
     }
 
+    private handleTimeout(event: Event): void {
+        const response = new Response();
+        response.errorMessage.push("Server session timed out! Try again :(");
+        this.treePanel.update(response);
+        this.infoPanel.update(response);
+    }
+
     private showTree(): void {
         this.historyPanel.hide(true);
         this.treePanel.hide(false);
         this.infoPanel.hide(false);
+        this.dbPanel.hide(true);
     }
 
     private showHistory(): void {
         this.historyPanel.hide(false);
         this.treePanel.hide(true);
         this.infoPanel.hide(true);
+        this.dbPanel.hide(true);
+    }
+
+    private showDB(): void {
+        this.historyPanel.hide(true);
+        this.treePanel.hide(true);
+        this.infoPanel.hide(true);
+        this.dbPanel.hide(false);
     }
 }
