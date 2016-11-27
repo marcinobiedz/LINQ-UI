@@ -2,7 +2,8 @@ import {Panel, Updatable} from "../core/Panel";
 import {Response} from "../core/Response";
 import {render} from "../renderers/InfoChart";
 import {ChartAPI} from "c3";
-import {ServerResponse} from "../core/ServerResponse";
+import {ServerResponse, TableInfo} from "../core/ServerResponse";
+import {CSV, FileName} from "../Constants";
 
 export class InfoPanel extends Panel implements Updatable {
     private chartPanel: HTMLDivElement;
@@ -10,6 +11,10 @@ export class InfoPanel extends Panel implements Updatable {
     private tableBody: HTMLElement;
     private chartAPI: ChartAPI;
     private downloadButton: HTMLButtonElement;
+    private initialCounts: number[];
+    private finalCounts: number[];
+    private executionTimes: number[];
+    private tablesInfo: TableInfo[];
 
     constructor(infoPanel: HTMLDivElement) {
         super(infoPanel);
@@ -43,6 +48,8 @@ export class InfoPanel extends Panel implements Updatable {
 
     private updateTable(response: ServerResponse): void {
         this.tableBody.innerHTML = "";
+        this.clearTables();
+        this.fillTables(response);
         for (let i: number = 0; i < response.executionTimes.length; i++) {
             const row = document.createElement("tr");
             row.innerHTML = "<td>" + (i + 1) + "</td>" +
@@ -69,5 +76,34 @@ export class InfoPanel extends Panel implements Updatable {
         table.appendChild(this.tableBody);
         this.tablePanel.appendChild(table);
         this.tablePanel.appendChild(this.downloadButton);
+        this.downloadButton.addEventListener("click", this.downloadCSV.bind(this));
+    }
+
+    private downloadCSV(event: MouseEvent): void {
+        const element: HTMLAnchorElement = document.createElement("a");
+        element.href = CSV + this.createFile();
+        element.download = FileName;
+        element.style.display = "none";
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+
+    private createFile(): string {
+        return encodeURIComponent("asasasasas22");
+    }
+
+    private fillTables(response: ServerResponse): void {
+        this.executionTimes = response.executionTimes;
+        this.initialCounts = response.initialCounts;
+        this.finalCounts = response.finalCounts;
+        this.tablesInfo = response.tablesInfo;
+    }
+
+    private clearTables(): void {
+        this.executionTimes = [];
+        this.tablesInfo = [];
+        this.initialCounts = [];
+        this.finalCounts = [];
     }
 }

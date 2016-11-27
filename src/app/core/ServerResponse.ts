@@ -5,6 +5,7 @@ export interface ServerResponse {
     initialCounts: number[];
     errors: string[];
     tree?: ResponseTreeNode[];
+    tablesInfo: TableInfo[];
 }
 
 export interface ResponseTreeNode {
@@ -13,4 +14,9 @@ export interface ResponseTreeNode {
     ParentId?: number;
     NodeText?: string;
     Text: string;
+}
+
+export type TableInfo = {
+    TableName: string;
+    TableCount: number;
 }
