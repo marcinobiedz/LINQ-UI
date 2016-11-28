@@ -17,7 +17,7 @@ export class MenuPanel extends Panel implements Updatable {
     }
 
     private createMenuItems(menuList: HTMLUListElement, launchers: Launcher[]): void {
-        launchers.forEach((launcher, index) => {
+        launchers.forEach(launcher => {
             const menuItem: HTMLLIElement = document.createElement("li");
             menuItem.classList.add("list-group-item");
             menuItem.innerHTML = this.createMenuItem(launcher);

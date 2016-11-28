@@ -3,7 +3,7 @@ import {Response} from "../core/Response";
 import {render} from "../renderers/InfoChart";
 import {ChartAPI} from "c3";
 import {ServerResponse, TableInfo} from "../core/ServerResponse";
-import {CSV, FileName} from "../Constants";
+import * as Constants from "../Constants";
 
 export class InfoPanel extends Panel implements Updatable {
     private chartPanel: HTMLDivElement;
@@ -81,8 +81,8 @@ export class InfoPanel extends Panel implements Updatable {
 
     private downloadCSV(event: MouseEvent): void {
         const element: HTMLAnchorElement = document.createElement("a");
-        element.href = CSV + this.createFile();
-        element.download = FileName;
+        element.href = Constants.CSV + this.createFile();
+        element.download = Constants.FileName;
         element.style.display = "none";
         document.body.appendChild(element);
         element.click();
@@ -90,7 +90,18 @@ export class InfoPanel extends Panel implements Updatable {
     }
 
     private createFile(): string {
-        return encodeURIComponent("asasasasas22");
+        const header: string = "Table;Count\n";
+        const tables: string = this.tablesInfo.reduce((acc, table) => {
+            return acc += table.TableName + ";" + table.TableCount + "\n";
+        }, "");
+        const sep: string = "\n";
+        let results: string = "Initial count;Final count;Execution time\n";
+        for (let i = 0; i < this.executionTimes.length; i++) {
+            results += this.initialCounts[i] + ";" +
+                this.finalCounts[i].toString() + ";" +
+                this.executionTimes[i].toString() + "\n"
+        }
+        return encodeURIComponent(header + tables + sep + results);
     }
 
     private fillTables(response: ServerResponse): void {

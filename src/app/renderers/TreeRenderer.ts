@@ -31,7 +31,7 @@ export class TreeRenderer {
         this.tree = d3.layout.tree().size([this.treeSize.height, this.treeSize.width]);
 
         //noinspection TypeScriptUnresolvedFunction // TODO: poprawić
-        this.diagonal = d3.svg.diagonal().projection(d=> {
+        this.diagonal = d3.svg.diagonal().projection(d => {
             return [d.y, d.x];
         });
     }
@@ -51,7 +51,7 @@ export class TreeRenderer {
         const nodes = this.tree.nodes(this.root).reverse();
         const links = this.tree.links(nodes);
         // Normalize for fixed-depth.
-        nodes.forEach(d=> {
+        nodes.forEach(d => {
             d.y = d.depth * 180;
         });
         // Update the nodes…
@@ -165,12 +165,13 @@ export class TreeRenderer {
 
     private showTooltip(d) {
         this.tooltipElement.innerHTML = d.name;
-        this.tooltipElement.style.top = ((<MouseEvent>d3.event).clientY - 40) + "px";
-        this.tooltipElement.style.left = (<MouseEvent>d3.event).clientX + "px";
+        const event = <MouseEvent>d3.event;
+        this.tooltipElement.style.top = (event.clientY - 40) + "px";
+        this.tooltipElement.style.left = event.clientX + "px";
         this.tooltipElement.style.visibility = "visible";
     }
 
-    private hideTooltip(d) {
+    private hideTooltip() {
         this.tooltipElement.style.visibility = "hidden";
         this.tooltipElement.innerHTML = "";
     }

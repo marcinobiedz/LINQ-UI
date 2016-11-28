@@ -27,7 +27,6 @@ export class HistoryPanel extends Panel implements Updatable {
     }
 
     private handleClick(event: Event): void {
-        debugger;
         const id = (<HTMLElement>event.target).id.split('-')[1];
         this.updateDashboard(this.previousQueries[parseInt(id)]);
     }
