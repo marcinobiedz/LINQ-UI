@@ -27,8 +27,8 @@ export class DbPanel extends Panel implements Updatable {
         const graph = new joint.dia.Graph();
         const paper = new joint.dia.Paper({
             el: this.mainPanel,
-            width: 695,
-            height: 600,
+            width: this.mainPanel.offsetWidth,
+            height: this.mainPanel.offsetHeight,
             gridSize: 1,
             model: graph,
             linkPinning: false,
