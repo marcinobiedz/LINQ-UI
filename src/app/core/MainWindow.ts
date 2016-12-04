@@ -55,13 +55,20 @@ export class MainWindow {
             expression = expression.replace(/\s+/g, '');
             this.currentExpression = expression;
             this.searchPanel.update(new Response(), expression);
-            const xhr: XMLHttpRequest = new XMLHttpRequest();
-            xhr.open(Constants.METHOD, Constants.URL, true);
-            xhr.timeout = 60000;
-            xhr.setRequestHeader(Constants.AJAX_HEADERS[0], Constants.AJAX_HEADERS[1]);
-            xhr.addEventListener("readystatechange", this.handleServerRequest.bind(this));
-            xhr.ontimeout = this.handleTimeout.bind(this);
-            xhr.send(JSON.stringify(expression));
+            //chart request =======================================
+            const chartXhr:XMLHttpRequest = new XMLHttpRequest();
+            chartXhr.open(Constants.METHOD, Constants.CHART_URL, true);
+            chartXhr.timeout = 60000;
+            chartXhr.setRequestHeader(Constants.AJAX_HEADERS[0], Constants.AJAX_HEADERS[1]);
+            chartXhr.addEventListener("readystatechange", this.handleServerChartRequest.bind(this));
+            chartXhr.ontimeout = this.handleTimeout.bind(this);
+            chartXhr.send(JSON.stringify(expression));
+            // tree request =====================================
+            const treeXhr: XMLHttpRequest = new XMLHttpRequest();
+            treeXhr.open(Constants.METHOD, Constants.TREE_URL, true);
+            treeXhr.setRequestHeader(Constants.AJAX_HEADERS[0], Constants.AJAX_HEADERS[1]);
+            treeXhr.addEventListener("readystatechange", this.handleServerTreeRequest.bind(this));
+            treeXhr.send(JSON.stringify(expression));
         } else {
             const response = new Response();
             response.errorMessage.push("You didn't type any LINQ query!");
@@ -70,7 +77,7 @@ export class MainWindow {
         }
     }
 
-    private handleServerRequest(event: Event): void {
+    private handleServerTreeRequest(event: Event): void {
         if ((<XMLHttpRequest>event.target).readyState === XMLHttpRequest.DONE
             && (<XMLHttpRequest>event.target).status === 200) {
             const response: Response = new Response();
@@ -78,15 +85,26 @@ export class MainWindow {
             response.resultType = response.serverResponse.isResponseValid;
             response.errorMessage = response.serverResponse.errors;
             this.treePanel.update(response);
-            this.infoPanel.update(response);
+            //this.infoPanel.update(response);
             this.historyPanel.update(response, this.currentExpression);
+        }
+    }
+
+    private handleServerChartRequest(event: Event): void {
+        if ((<XMLHttpRequest>event.target).readyState === XMLHttpRequest.DONE
+            && (<XMLHttpRequest>event.target).status === 200) {
+            const response: Response = new Response();
+            response.serverResponse = JSON.parse((<XMLHttpRequest>event.target).responseText);
+            response.resultType = response.serverResponse.isResponseValid;
+            response.errorMessage = response.serverResponse.errors;
+            this.infoPanel.update(response);
         }
     }
 
     private handleTimeout(event: Event): void {
         const response = new Response();
+        response.errorMessage.push(Constants.TIMEOUT);
         response.errorMessage.push("Server session timed out! Try again :(");
-        this.treePanel.update(response);
         this.infoPanel.update(response);
     }
 

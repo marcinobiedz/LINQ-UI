@@ -3,6 +3,7 @@ import {Response} from "../core/Response";
 import {TreeDataConverter} from "../converters/TreeDataConverter";
 import {TreeRenderer} from "../renderers/TreeRenderer";
 import {TreeNode} from "../renderers/TreeNode";
+import {ServerTreeResponse} from "../core/ServerResponse";
 
 export class TreePanel extends Panel implements Updatable {
     private treeCanvas: SVGSVGElement;
@@ -59,7 +60,7 @@ export class TreePanel extends Panel implements Updatable {
 
     private updateTreeCanvas(response: Response) {
         this.treeCanvas.innerHTML = "";
-        const convertedData: TreeNode = this.treeDataConverter.convert(response.serverResponse.tree);
+        const convertedData: TreeNode = this.treeDataConverter.convert((<ServerTreeResponse>response.serverResponse).tree);
         this.treeRenderer.render(convertedData);
     }
 }

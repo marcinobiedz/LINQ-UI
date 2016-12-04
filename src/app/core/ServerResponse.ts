@@ -1,10 +1,17 @@
-export interface ServerResponse {
+export interface ServerTreeResponse {
     isResponseValid: boolean;
+    errors: string[];
+
+    tree?: ResponseTreeNode[];
+}
+
+export interface ServerChartResponse {
+    isResponseValid: boolean;
+    errors: string[];
+
     executionTimes: number[];
     finalCounts: number[];
     initialCounts: number[];
-    errors: string[];
-    tree?: ResponseTreeNode[];
     tablesInfo: TableInfo[];
 }
 

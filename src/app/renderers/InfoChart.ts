@@ -1,7 +1,7 @@
-import {ServerResponse} from "../core/ServerResponse";
+import {ServerChartResponse} from "../core/ServerResponse";
 import * as c3 from "c3";
 
-export function render(chartDiv: HTMLDivElement, response: ServerResponse): c3.ChartAPI {
+export function render(chartDiv: HTMLDivElement, response: ServerChartResponse): c3.ChartAPI {
     chartDiv.innerHTML = "";
     //========================
     return c3.generate({

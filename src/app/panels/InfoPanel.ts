@@ -2,7 +2,7 @@ import {Panel, Updatable} from "../core/Panel";
 import {Response} from "../core/Response";
 import {render} from "../renderers/InfoChart";
 import {ChartAPI} from "c3";
-import {ServerResponse, TableInfo} from "../core/ServerResponse";
+import {TableInfo, ServerChartResponse} from "../core/ServerResponse";
 import * as Constants from "../Constants";
 
 export class InfoPanel extends Panel implements Updatable {
@@ -38,15 +38,18 @@ export class InfoPanel extends Panel implements Updatable {
         if (response.resultType) {
             this.chartPanel.hidden = false;
             this.tablePanel.hidden = false;
-            this.chartAPI = render(this.chartPanel, response.serverResponse);
-            this.updateTable(response.serverResponse);
+            this.chartAPI = render(this.chartPanel, <ServerChartResponse>response.serverResponse);
+            this.updateTable(<ServerChartResponse>response.serverResponse);
+        } else if (!response.resultType && response.errorMessage[0] === Constants.TIMEOUT) {
+            // TODO: Do it and we are done :)
+            console.log(response.errorMessage[1]);
         } else {
             this.chartPanel.hidden = true;
             this.tablePanel.hidden = true;
         }
     }
 
-    private updateTable(response: ServerResponse): void {
+    private updateTable(response: ServerChartResponse): void {
         this.tableBody.innerHTML = "";
         this.clearTables();
         this.fillTables(response);
@@ -104,7 +107,7 @@ export class InfoPanel extends Panel implements Updatable {
         return encodeURIComponent(header + tables + sep + results);
     }
 
-    private fillTables(response: ServerResponse): void {
+    private fillTables(response: ServerChartResponse): void {
         this.executionTimes = response.executionTimes;
         this.initialCounts = response.initialCounts;
         this.finalCounts = response.finalCounts;
