@@ -23,9 +23,7 @@
   "devDependencies": {
     "@types/c3": "0.4.37",
     "@types/d3": "3.5.36",
-    "@types/jointjs": "1.0.0",
     "css-loader": "0.25.0",
-    "jointjs": "1.0.1",
     "less": "2.7.1",
     "less-loader": "2.2.3",
     "style-loader": "0.13.1",
