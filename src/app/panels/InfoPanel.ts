@@ -8,6 +8,7 @@ import * as Constants from "../Constants";
 export class InfoPanel extends Panel implements Updatable {
     private chartPanel: HTMLDivElement;
     private tablePanel: HTMLDivElement;
+    private timeoutAlert: HTMLDivElement;
     private tableBody: HTMLElement;
     private chartAPI: ChartAPI;
     private downloadButton: HTMLButtonElement;
@@ -30,19 +31,25 @@ export class InfoPanel extends Panel implements Updatable {
         this.downloadButton.innerText = "Download CSV";
         this.mainPanel.appendChild(this.tablePanel);
         this.createTable();
+        this.timeoutAlert = document.createElement("div");
+        this.timeoutAlert.classList.add("alert", "alert-danger", "info-alert");
+        this.timeoutAlert.id = "info-alert";
+        this.timeoutAlert.innerText = "TIMEOUT! Your chart request has timed out, try again :(";
+        this.mainPanel.appendChild(this.timeoutAlert);
+        this.timeoutAlert.hidden = true;
         this.chartPanel.hidden = true;
         this.tablePanel.hidden = true;
     }
 
     update(response: Response, expression?: string): void {
+        this.timeoutAlert.hidden = true;
         if (response.resultType) {
             this.chartPanel.hidden = false;
             this.tablePanel.hidden = false;
             this.chartAPI = render(this.chartPanel, <ServerChartResponse>response.serverResponse);
             this.updateTable(<ServerChartResponse>response.serverResponse);
         } else if (!response.resultType && response.errorMessage[0] === Constants.TIMEOUT) {
-            // TODO: Do it and we are done :)
-            console.log(response.errorMessage[1]);
+            this.timeoutAlert.hidden = false;
         } else {
             this.chartPanel.hidden = true;
             this.tablePanel.hidden = true;

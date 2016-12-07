@@ -1,4 +1,4 @@
-const urls: string[] = ['localhost:49607', '192.168.2.6:9090'];
+const urls: string[] = ['localhost:49607', '192.168.2.3:9090'];
 export const METHOD: string = "POST";
 export const TIMEOUT: string = "TIMEOUT";
 export const CSV: string = "data:text/csv;charset=utf-8,";
