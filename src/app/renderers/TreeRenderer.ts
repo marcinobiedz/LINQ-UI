@@ -103,7 +103,14 @@ export class TreeRenderer {
             });
 
         nodeUpdate.select("text")
-            .style("fill-opacity", 1);
+            .style("fill-opacity", 1)
+            .text(d => {
+                if (d._children) {
+                    return this.rollLabel(d);
+                }
+                else
+                    return d.nodeText;
+            });
 
         const nodeExit = node.exit().transition()
             .duration(this.duration)
@@ -150,6 +157,20 @@ export class TreeRenderer {
             d.x0 = d.x;
             d.y0 = d.y;
         });
+    }
+
+    private rollLabel(d): string {
+        const children = d.children || d._children || [];
+        if (children.length > 1) {
+            const nextChildren = children.filter((child, index) => index > 0);
+            return this.rollLabel(children[0]) + "." + d.nodeText +
+                "(" + nextChildren.map(child => this.rollLabel(child)).join(",") + ")";
+        } else if (children.length == 1 && !d.nodeText) {
+            return this.rollLabel(children[0]);
+        } else if (children.length == 1) {
+            return d.nodeText + "(" + this.rollLabel(children[0]) + ")";
+        } else
+            return d.nodeText;
     }
 
     private clickNode(d): void {
