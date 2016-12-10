@@ -85,7 +85,6 @@ export class MainWindow {
             response.resultType = response.serverResponse.isResponseValid;
             response.errorMessage = response.serverResponse.errors;
             this.treePanel.update(response);
-            //this.infoPanel.update(response);
             this.historyPanel.update(response, this.currentExpression);
         }
     }
