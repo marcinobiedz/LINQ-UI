@@ -31,15 +31,15 @@ export class SearchPanel extends Panel implements Updatable {
 
     private handleButtonClick(event: MouseEvent): void {
         const inputLINQ: string = this.expressionInput.value;
-        this.updateDashboard('db.SalesOrderDetails.Where(sod => sod.Product.' +
-            'ProductNumber.StartsWith("aaa")).Select(ob=>ob.UnitPrice)');
+        // this.updateDashboard('db.SalesOrderDetails.Where(sod => sod.Product.' +
+        //     'ProductNumber.StartsWith("aaa")).Select(ob=>ob.UnitPrice)');
         // this.updateDashboard('db.SalesOrderDetails.Join(db.SalesOrderHeaders,' +
         //     'sod => sod.SalesOrderID,' +
         //     'soh => soh.SalesOrderID,' +
         //     '(sod, soh) => new { ID = sod.SalesOrderDetailID, An = soh.AccountNumber })' +
         //     '.Where(obj => obj.An.StartsWith("10-4020-0002"))' +
         //     '.Select(sel => sel.ID)');
-        //this.updateDashboard(inputLINQ);
+        this.updateDashboard(inputLINQ);
     }
 
     update(response: Response, expression: string): void {

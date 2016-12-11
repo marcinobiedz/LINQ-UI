@@ -52,7 +52,7 @@ export class TreeRenderer {
         const links = this.tree.links(nodes);
         // Normalize for fixed-depth.
         nodes.forEach(d => {
-            d.y = d.depth * 180;
+            d.y = d.depth * 160;
         });
         // Update the nodes…
         const node = this.svg.selectAll("g.node")
@@ -165,6 +165,8 @@ export class TreeRenderer {
             const nextChildren = children.filter((child, index) => index > 0);
             return this.rollLabel(children[0]) + "." + d.nodeText +
                 "(" + nextChildren.map(child => this.rollLabel(child)).join(",") + ")";
+        } else if (children.length == 1 && d.name.startsWith("MemberExpression")) {
+            return this.rollLabel(children[0]) + "." + d.nodeText;
         } else if (children.length == 1 && !d.nodeText) {
             return this.rollLabel(children[0]);
         } else if (children.length == 1) {
