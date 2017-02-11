@@ -22,7 +22,8 @@ module.exports = {
     module: {
         loaders: [
             {test: /.ts$/, loader: 'ts-loader', exclude: /node_modules/},
-            {test: /.less$/, loader: 'style!css!less', exclude: /node_modules/}
+            {test: /.less$/, loader: 'style!css!less', exclude: /node_modules/},
+            {test: /.svg$/, loader: 'url-loader', exclude: /node_modules/}
         ]
     }
 };
