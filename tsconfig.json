@@ -5,8 +5,6 @@
     "noImplicitAny": false,
     "sourceMap": true
   },
-  "files": [
-  ],
   "exclude": [
     "node_modules"
   ]
