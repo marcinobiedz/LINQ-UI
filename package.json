@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "server": "webpack-dev-server",
-    "compile": "tsc",
     "dev": "webpack -w",
     "bundle": "webpack",
     "demo": "npm run bundle && npm run server"
