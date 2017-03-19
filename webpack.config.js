@@ -1,6 +1,6 @@
 module.exports = {
     entry: {
-        'app': ['./src/styles/main.less', './src/app/core/MainWindow.ts']
+        'app': ['./src/styles/main.less', './src/app/MainWindow.ts']
     },
     exclude: 'node_modules',
     output: {

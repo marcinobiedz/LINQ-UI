@@ -1,5 +1,5 @@
-import {Updatable, Panel} from "../core/Panel";
-import {Response} from "../core/Response";
+import {Updatable, Panel} from "./Panel";
+import {Response} from "../response/Response";
 import {DbRenderer} from "../renderers/DbRenderer";
 
 export class DbPanel extends Panel implements Updatable {

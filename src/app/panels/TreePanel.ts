@@ -1,9 +1,9 @@
-import {Panel, Updatable} from "../core/Panel";
-import {Response} from "../core/Response";
+import {Panel, Updatable} from "./Panel";
+import {Response} from "../response/Response";
 import {TreeDataConverter} from "../converters/TreeDataConverter";
 import {TreeRenderer} from "../renderers/TreeRenderer";
 import {TreeNode} from "../renderers/TreeNode";
-import {ServerTreeResponse} from "../core/ServerResponse";
+import {ServerTreeResponse} from "../response/ServerResponse";
 
 export class TreePanel extends Panel implements Updatable {
     private treeCanvas: SVGSVGElement;

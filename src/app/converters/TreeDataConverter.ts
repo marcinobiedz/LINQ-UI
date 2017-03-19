@@ -1,4 +1,4 @@
-import {ResponseTreeNode} from "../core/ServerResponse";
+import {ResponseTreeNode} from "../response/ServerResponse";
 import {TreeNode} from "../renderers/TreeNode";
 
 export class TreeDataConverter {

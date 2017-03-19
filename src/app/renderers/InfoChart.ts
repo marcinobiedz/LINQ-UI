@@ -1,4 +1,4 @@
-import {ServerChartResponse} from "../core/ServerResponse";
+import {ServerChartResponse} from "../response/ServerResponse";
 import * as c3 from "c3";
 
 export function render(chartDiv: HTMLDivElement, response: ServerChartResponse): c3.ChartAPI {

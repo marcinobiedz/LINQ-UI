@@ -1,4 +1,4 @@
-import {Response} from "./Response";
+import {Response} from "../response/Response";
 export class Panel {
     constructor(protected mainPanel: HTMLDivElement) {
     }

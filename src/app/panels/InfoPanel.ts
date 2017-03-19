@@ -1,8 +1,8 @@
-import {Panel, Updatable} from "../core/Panel";
-import {Response} from "../core/Response";
+import {Panel, Updatable} from "./Panel";
+import {Response} from "../response/Response";
 import {render} from "../renderers/InfoChart";
 import {ChartAPI} from "c3";
-import {TableInfo, ServerChartResponse} from "../core/ServerResponse";
+import {TableInfo, ServerChartResponse} from "../response/ServerResponse";
 import * as Constants from "../Constants";
 
 export class InfoPanel extends Panel implements Updatable {

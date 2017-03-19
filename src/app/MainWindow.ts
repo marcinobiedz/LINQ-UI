@@ -1,11 +1,11 @@
-import {SearchPanel} from "../panels/SearchPanel";
-import {MenuPanel} from "../panels/MenuPanel";
-import {TreePanel} from "../panels/TreePanel";
-import {Response} from "./Response";
-import * as Constants from "../Constants";
-import {InfoPanel} from "../panels/InfoPanel";
-import {HistoryPanel} from "../panels/HistoryPanel";
-import {DbPanel} from "../panels/DbPanel";
+import {SearchPanel} from "./panels/SearchPanel";
+import {MenuPanel} from "./panels/MenuPanel";
+import {TreePanel} from "./panels/TreePanel";
+import {Response} from "./response/Response";
+import * as Constants from "./Constants";
+import {InfoPanel} from "./panels/InfoPanel";
+import {HistoryPanel} from "./panels/HistoryPanel";
+import {DbPanel} from "./panels/DbPanel";
 
 export class MainWindow {
     private searchPanel: SearchPanel;
