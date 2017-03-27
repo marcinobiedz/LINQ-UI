@@ -3,7 +3,7 @@ import {Response} from "../response/Response";
 import {render} from "../renderers/InfoChart";
 import {ChartAPI} from "c3";
 import {TableInfo, ServerChartResponse} from "../response/ServerResponse";
-import * as Constants from "../Constants";
+import {Constants} from "../core/Constants";
 
 export class InfoPanel extends Panel implements Updatable {
     private chartPanel: HTMLDivElement;
@@ -92,7 +92,7 @@ export class InfoPanel extends Panel implements Updatable {
     private downloadCSV(event: MouseEvent): void {
         const element: HTMLAnchorElement = document.createElement("a");
         element.href = Constants.CSV + this.createFile();
-        element.download = Constants.FileName;
+        element.download = Constants.FILENAME;
         element.style.display = "none";
         document.body.appendChild(element);
         element.click();

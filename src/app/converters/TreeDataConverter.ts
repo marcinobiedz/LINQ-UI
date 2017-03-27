@@ -6,9 +6,9 @@ export class TreeDataConverter {
 
     convert(tree: ResponseTreeNode[]): TreeNode {
         this.parentNode = new TreeNode();
-        const parentServerNode: ResponseTreeNode = tree.filter(node => {
+        const parentServerNode: ResponseTreeNode = tree.find(node => {
             return node.ParentId == null;
-        })[0];
+        });
         this.parentNode.name = parentServerNode.Text;
         this.parentNode.nodeText = parentServerNode.NodeText ? parentServerNode.NodeText : "";
         this.createNodes(tree, parentServerNode.Id, this.parentNode);

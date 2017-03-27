@@ -2,10 +2,11 @@ import {SearchPanel} from "./panels/SearchPanel";
 import {MenuPanel} from "./panels/MenuPanel";
 import {TreePanel} from "./panels/TreePanel";
 import {Response} from "./response/Response";
-import * as Constants from "./Constants";
 import {InfoPanel} from "./panels/InfoPanel";
 import {HistoryPanel} from "./panels/HistoryPanel";
 import {DbPanel} from "./panels/DbPanel";
+import {Constants} from "./core/Constants";
+import {PanelConfig} from "./core/PanelConfig";
 
 export class MainWindow {
     private searchPanel: SearchPanel;
@@ -16,7 +17,8 @@ export class MainWindow {
     private historyPanel: HistoryPanel;
     private currentExpression: string;
 
-    constructor(private mainDiv: HTMLDivElement) {
+    constructor(private mainDiv: HTMLDivElement, config: PanelConfig) {
+        Constants.URL = config.url;
         this.searchPanel = new SearchPanel(<HTMLDivElement>this.mainDiv.querySelector(".search-panel"),
             this.updateDashboard.bind(this));
         this.dbPanel = new DbPanel(<HTMLDivElement>this.mainDiv.querySelector(".db-panel"));
@@ -56,7 +58,7 @@ export class MainWindow {
             this.currentExpression = expression;
             this.searchPanel.update(new Response(), expression);
             //chart request =======================================
-            const chartXhr:XMLHttpRequest = new XMLHttpRequest();
+            const chartXhr: XMLHttpRequest = new XMLHttpRequest();
             chartXhr.open(Constants.METHOD, Constants.CHART_URL, true);
             chartXhr.timeout = 60000;
             chartXhr.setRequestHeader(Constants.AJAX_HEADERS[0], Constants.AJAX_HEADERS[1]);
