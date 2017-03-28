@@ -1,6 +1,5 @@
 # Created by https://www.gitignore.io/api/webstorm
 node_modules
-dist
 .idea
 
 ### WebStorm ###
@@ -53,3 +52,5 @@ fabric.properties
 # modules.xml
 # .idea/misc.xml 
 # *.ipr
+preview/app.js
+preview/app.js.map

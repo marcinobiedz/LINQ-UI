@@ -4,10 +4,8 @@
   "description": "msc project ui",
   "main": "index.js",
   "scripts": {
-    "server": "webpack-dev-server",
     "dev": "webpack -w",
-    "bundle": "webpack",
-    "demo": "npm run bundle && npm run server"
+    "devserver": "webpack-dev-server"
   },
   "repository": {
     "type": "git",

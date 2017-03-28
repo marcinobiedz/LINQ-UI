@@ -4,13 +4,13 @@ module.exports = {
     },
     exclude: 'node_modules',
     output: {
-        path: 'dist',
+        path: 'preview',
         filename: '[name].js',
         library: "TreeAnalyzer",
         libraryTarget: "umd"
     },
     devServer: {
-        contentBase: './',
+        contentBase: './preview',
         publicPath: '/',
         inline: true,
         port: 63342
