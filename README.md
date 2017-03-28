@@ -16,7 +16,7 @@ Variables are to be set in a **config.json** file that can be found in a root of
 }
 ```
 For now the only configurable variable is the *url* which will be an endpoint where UI can
-download the data. Replace the asterisk with, for example, ***http://localhost:9000*** and the
+download the data. Replace the asterisk with, for example, `http://localhost:9000` and the
 UI will look for a data under such URLs:
 ```
 http://localhost:9000/api/exptree
