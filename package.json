@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack -w",
-    "devserver": "webpack-dev-server"
+    "devserver": "webpack-dev-server",
+    "postinstall": "npm run devserver"
   },
   "repository": {
     "type": "git",
