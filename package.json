@@ -4,10 +4,10 @@
   "description": "msc project ui",
   "main": "index.js",
   "scripts": {
-    "compile": "webpack",
     "dev": "webpack -w",
     "devserver": "webpack-dev-server",
-    "start": "npm run compile && http-server ./preview -p 63342"
+    "compile": "webpack",
+    "start": "npm run compile && http-server ./preview -p 8080"
   },
   "repository": {
     "type": "git",
